@@ -24,6 +24,8 @@ void Game::initWindow()
 		infilestream >> framerate_limit;
 		infilestream >> vertical_sync_enabled;
 	}
+
+	infilestream.close();
 	this->window = new sf::RenderWindow(window_bounds, title);
 	//Set frame rate, turn off vsync
 	this->window->setFramerateLimit(framerate_limit);
