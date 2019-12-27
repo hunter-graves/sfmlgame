@@ -5,11 +5,29 @@
 //Initializer functions
 void Game::initWindow()
 {
+
+
 	/*Creates a SFML window using options from a window.ini file*/
-	this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "SFML RPG");
+	std::ifstream infilestream("config/window.ini");
+
+	//Default window settings
+	sf::VideoMode window_bounds(800, 600);
+	std::string title = "None";
+	unsigned framerate_limit = 120;
+	bool vertical_sync_enabled = false;
+
+	//Load window config settings from window ini file
+	if(infilestream.is_open())
+	{
+		std::getline(infilestream, title);
+		infilestream >> window_bounds.width >> window_bounds.height;
+		infilestream >> framerate_limit;
+		infilestream >> vertical_sync_enabled;
+	}
+	this->window = new sf::RenderWindow(window_bounds, title);
 	//Set frame rate, turn off vsync
-	this->window->setFramerateLimit(120);
-	this->window->setVerticalSyncEnabled(false);
+	this->window->setFramerateLimit(framerate_limit);
+	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 //Constructors/Destructors
 

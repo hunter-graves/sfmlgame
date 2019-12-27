@@ -5,6 +5,8 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
+#include <sstream>
 #include <catch2/catch.hpp>
 #include <PCH.hpp>
 
