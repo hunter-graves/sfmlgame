@@ -1,7 +1,5 @@
-bin/Debug/obj/Game.cpp.o: src/Game.cpp src/Game.h src/GameState.h \
+bin/Release/obj/GameState.cpp.o: src/GameState.cpp src/GameState.h \
  src/State.h lib/catch2/catch.hpp src/PCH.hpp
-
-src/Game.h:
 
 src/GameState.h:
 

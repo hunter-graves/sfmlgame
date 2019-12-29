@@ -44,6 +44,7 @@ Game::Game()
 
 	//initialize a window
 	this->initWindow();
+	this->initStates();
 }
 
 Game::~Game()
@@ -81,7 +82,9 @@ void Game::updateSFMLEvents()
 		while (this->window->pollEvent(this->sfEvent))
 		{
 			if (this->sfEvent.type == sf::Event::Closed)
+			{
 				this->window->close();
+			}
 		}
 
 
@@ -111,8 +114,9 @@ void Game::render()
  	this->window->clear();
 	//Render items
 	if(!this->states.empty())
-	this->states.top()->render();
-
+	{
+		this->states.top()->render();
+	}
 	this->window->display();
 }
 

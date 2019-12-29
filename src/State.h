@@ -28,7 +28,7 @@ public:
 	//in the child class. Virtual void ensures that we need to implement and override
 	//these functions.
 	virtual void endState() = 0; //end state function to ensure that we always have a way to end our state
-	virtual void update(const float& dt) = 0;
+	virtual void update(const float& dt) = 0; //we dont want to save all these things here we do it in the game engine itself
 	//render keeps the context
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
 

@@ -21,7 +21,7 @@ class GameState :
 	//must be defined here)
 	void endState();
 	void update(const float& dt);
-	void render(sf::RenderTarget* target = nullptr);
+	void render(sf::RenderTarget* target = nullptr); //can only have one default value for the paramter
 
 
 

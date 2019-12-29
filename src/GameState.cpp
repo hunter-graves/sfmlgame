@@ -11,13 +11,19 @@ GameState::~GameState()
 
 }
 
-void GameState::update(const float& dt)
+void GameState::endState()
 {
 
 }
 
-void GameState::render(sf::RenderTarget* target = nullptr)
+void GameState::update(const float& /*dt*/)
+{
+	std::cout << "Hello from GameState!" << "\n";
+}
+
+void GameState::render(sf::RenderTarget* /*target*/)
 {
 
 
 }
+
