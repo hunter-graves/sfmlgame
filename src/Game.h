@@ -2,7 +2,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "State.h"
+#include "GameState.h"
 class Game
 {
 private:
@@ -19,9 +19,16 @@ private:
 	//this allows us to move the same amount, balances it out depending on computer's frame rates
 	float dt;
 
+	//State is an abstract class, we can only create references to it (pointers) rather
+	//than state objects. When we go from menu state into game state and save and exit, we throw
+	//away the game state and our new top state is main menu because it was right below game state!
+	std::stack<State*> states;
 
 	//Initialization
 	void initWindow();
+
+	//private function that pushes one state
+	void initStates();
 
 
 public:
