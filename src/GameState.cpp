@@ -23,13 +23,13 @@ void GameState::update(const float& dt)
 	}
 }
 
-void GameState::render(sf::RenderTarget* target)
+void GameState::render(sf::RenderTarget* /*target*/)
 {
 
 
 }
 
-void GameState::updateKeybinds(const float & dt)
+void GameState::updateKeybinds(const float & /*dt*/)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed

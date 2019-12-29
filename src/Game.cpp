@@ -111,12 +111,12 @@ void Game::update()
 			this->states.pop();
 		}
 	}
-/* Testing to make delta time slow
- for(size_t i =0; i < 10000; i++)
- {
-	 std::cout << "." << "\n";
- }
- */
+	//End of Application
+
+	else
+	{
+		this->window->close(); //this would just close the game completely
+	}
 }
 
 void Game::render()
