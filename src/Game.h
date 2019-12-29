@@ -24,11 +24,20 @@ private:
 	//away the game state and our new top state is main menu because it was right below game state!
 	std::stack<State*> states;
 
+
+
+	//Map
+	std::map<std::string, int> supportedKeys;
 	//Initialization
 	void initWindow();
 
+	//add supported keys
+	void initKeys();
+
 	//private function that pushes one state
 	void initStates();
+
+
 
 
 public:

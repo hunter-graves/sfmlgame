@@ -1,11 +1,25 @@
 #include "GameState.h"
 
-
-//Constructor
-GameState::GameState(sf::RenderWindow* window)
-	: State(window)
+//init keybinds
+void GameState::initKeybinds()
 {
 
+	//WE CREATED FUNCTIONALITY that will used supported key a, d, w, s
+	//which are all supported by our engine. Functionality is only for THIS state
+	//so each state can have its own type of functionality based on each key.
+	this->keybinds.emplace("MOVE_LEFT", this->supportedKeys->at("A"));
+	this->keybinds.emplace("MOVE_RIGHT", this->supportedKeys->at("D"));
+	this->keybinds.emplace("MOVE_UP", this->supportedKeys->at("W"));
+	this->keybinds.emplace("MOVE_DOWN", this->supportedKeys->at("S"));
+
+	//Later, we will be able to use files to load these keybinds in.
+}
+
+//Constructor
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
+	: State(window, supportedKeys)
+{
+	this->initKeybinds();
 }
 
 //Destructor
@@ -14,27 +28,56 @@ GameState::~GameState()
 
 }
 
-//Updates
-void GameState::update(const float& dt)
-{
-	std::cout << "Hello from GameState!" << "\n";
-	this->updateKeybinds(dt);
 
-	this->player.update(dt);
-}
-
-void GameState::updateKeybinds(const float & /*dt*/)
+//Upodate input first
+void GameState::updateInput(const float& dt)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
 	this->checkForQuit();
 
+//Update player input
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
+	{
+		this->player.move(dt, -1.f, 0.f);
+	}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
+	{
+		this->player.move(dt, 1.f, 0.f);
+	}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
+	{
+		this->player.move(dt, 0.f, -1.f);
+	}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
+	{
+		this->player.move(dt, 0.f, 1.f);
+	}
+
 }
 
-//Renders
-void GameState::render(sf::RenderTarget* /*target*/)
+//Updates
+void GameState::update(const float& dt)
 {
-	this->player.render(this->window);
+	std::cout << "Hello from GameState!" << "\n";
+	this->updateInput(dt);
+
+	this->player.update(dt);
+}
+
+
+
+//Renders
+void GameState::render(sf::RenderTarget* target)
+{
+
+	if(!target)
+	{
+		target = this->window;
+	}
+		this->player.render(target);
+
+
 
 }
 
@@ -43,5 +86,7 @@ void GameState::endState()
 {
 	std::cout << "Ending GameState!" << "\n";
 }
+
+
 
 

@@ -32,12 +32,24 @@ void Game::initWindow()
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+//Initialize Keys
+void Game::initKeys()
+{
+	this->supportedKeys.emplace("ESCAPE", sf::Keyboard::Key::Escape);
+	this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
+	this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+	this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
+	this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+
+	//std::cout << this->supportedKeys.at("A") << "\n";
+}
+
 
 //Initialize State
 void Game::initStates()
 {
 	//we push a game state as we initialize the state
-	this->states.push(new GameState(this->window));
+	this->states.push(new GameState(this->window, &this->supportedKeys));
 }
 //Constructors/Destructors
 
@@ -46,7 +58,9 @@ Game::Game()
 
 	//initialize a window
 	this->initWindow();
+	this->initKeys();
 	this->initStates();
+
 }
 
 Game::~Game()
@@ -160,5 +174,6 @@ void Game::run()
 		this->render();
 	}
 }
+
 
 

@@ -7,9 +7,10 @@ class GameState :
 {
 	private:
 	Entity player;
-
+	//Functions
+	void initKeybinds();
 	public:
-		GameState(sf::RenderWindow* window);
+		GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
 		virtual ~GameState();
 
 
@@ -20,7 +21,7 @@ class GameState :
 	//Functions (pure virtual functions that were defined in State
 	//must be defined here)
 	void endState();
-	void updateKeybinds(const float& dt);
+	void updateInput(const float& dt);
 	void update(const float& dt);
 	//Can use "NULL" or 0 here (below) instead of nullptr..
 	void render(sf::RenderTarget* target = nullptr); //can only have one default value for the paramter
