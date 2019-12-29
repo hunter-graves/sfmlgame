@@ -13,6 +13,8 @@ State::~State()
 
 const bool & State::getQuit() const
 {
+
+	//if the function wants to quit, we quit
 	return this->quit;
 }
 void State::checkForQuit()

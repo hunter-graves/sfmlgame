@@ -98,7 +98,19 @@ void Game::update()
 
 
 	if(!this->states.empty())
-	this->states.top()->update(this->dt);
+	{
+		this->states.top()->update(this->dt);
+
+		if(this->states.top()->getQuit())
+		{
+			this->states.top()->endState();
+			//When we quit the game we need to do some quitty things...
+			//save a char, play an animation, etc...
+			//we could do this in the destructor
+			delete this->states.top();
+			this->states.pop();
+		}
+	}
 /* Testing to make delta time slow
  for(size_t i =0; i < 10000; i++)
  {

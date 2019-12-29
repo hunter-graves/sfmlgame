@@ -29,8 +29,8 @@ public:
 	//in the child class. Virtual void ensures that we need to implement and override
 	//these functions.
 	const bool& getQuit() const;
-	virtual void checkForQuit() = 0; //end state function to ensure that we always have a way to end our state
-	virtual void updateKeybinds(const float& dt) = 0;
+	virtual void checkForQuit(); //end state function to ensure that we always have a way to end our state
+	virtual void updateKeybinds(const float& dt) = 0; // similarly, every child class has to define update keybinds
 	virtual void update(const float& dt) = 0; //we dont want to save all these things here we do it in the game engine itself
 	//render keeps the context
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
