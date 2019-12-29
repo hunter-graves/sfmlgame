@@ -1,16 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include <vector>
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-#include <stack>
-#include <map>
-#include <catch2/catch.hpp>
-#include <PCH.hpp>
+#include "Entity.h"
 
 //We keep resources in State
 class State

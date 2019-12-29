@@ -2,7 +2,7 @@
 
 //Static functions
 
-//Initializer functions
+//Initializer for window
 void Game::initWindow()
 {
 
@@ -32,6 +32,8 @@ void Game::initWindow()
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+
+//Initialize State
 void Game::initStates()
 {
 	//we push a game state as we initialize the state
@@ -61,39 +63,16 @@ Game::~Game()
 
 //Functions
 
-
-void Game::updateDt()
+//End Application
+void Game::endApplication()
 {
-	//update DT w/ the time it takes to update and render one frame (top of the while loop in run)
-
-	//get delta time as seconds
-	this->dt = this->dtClock.restart().asSeconds();
-
-	//Track delta time, it will slow down the more that is happening
-	//in the game
-	//std::cout << this->dt << "\n";
-	//printf( "\033[2J" );
+	std::cout << "End Application" << "\n";
 }
 
-void Game::updateSFMLEvents()
-{
-
-		//update SFML window event to close when closed
-		while (this->window->pollEvent(this->sfEvent))
-		{
-			if (this->sfEvent.type == sf::Event::Closed)
-			{
-				this->window->close();
-			}
-		}
-
-
-
-}
-
+//Update
 void Game::update()
 {
-	//call update to check if window has closed
+//call update to check if window has closed
  this->updateSFMLEvents();
 
 
@@ -111,14 +90,49 @@ void Game::update()
 			this->states.pop();
 		}
 	}
-	//End of Application
 
+
+	//End of Application
 	else
 	{
+		this->endApplication();
 		this->window->close(); //this would just close the game completely
 	}
 }
 
+//UpdateDT
+void Game::updateDt()
+{
+	//update DT w/ the time it takes to update and render one frame (top of the while loop in run)
+
+	//get delta time as seconds
+	this->dt = this->dtClock.restart().asSeconds();
+
+	//Track delta time, it will slow down the more that is happening
+	//in the game
+	//std::cout << this->dt << "\n";
+	//printf( "\033[2J" );
+}
+
+//UpdateSFML
+void Game::updateSFMLEvents()
+{
+
+		//update SFML window event to close when closed
+		while (this->window->pollEvent(this->sfEvent))
+		{
+			if (this->sfEvent.type == sf::Event::Closed)
+			{
+				this->window->close();
+			}
+		}
+
+
+
+}
+
+
+//Render
 void Game::render()
 {
 
@@ -132,6 +146,7 @@ void Game::render()
 	this->window->display();
 }
 
+//Core
 void Game::run()
 {
 
