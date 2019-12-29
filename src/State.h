@@ -7,11 +7,17 @@
 class State
 {
 //We need an array (vector) to keep resources
-private:
+protected:
 sf::RenderWindow* window;
 std::vector<sf::Texture> textures;
 bool quit;
 
+private:
+
+
+//Virtuals are runtime polymorphic...
+//used to ensure that the correct function is aclled for an object,
+//regardless of the type of reference or pointer used for the func call
 public:
 	State(sf::RenderWindow* window);
 	virtual ~State();
