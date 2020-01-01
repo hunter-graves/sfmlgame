@@ -35,12 +35,30 @@ void Game::initWindow()
 //Initialize Keys
 void Game::initKeys()
 {
-	this->supportedKeys.emplace("ESCAPE", sf::Keyboard::Key::Escape);
-	this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
-	this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
-	this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
-	this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
 
+	std::ifstream infilestream("config/gamestate_keybinds.ini");
+
+	if (infilestream.is_open())
+	{
+		std::string key ="";
+		int key_value = 0;
+		while (infilestream >> key >> key_value)
+		{
+			this->supportedKeys[key] = key_value;
+		}
+	}
+	this->supportedKeys["ESCAPE"] = sf::Keyboard::Key::Escape;
+	this->supportedKeys["A"] = sf::Keyboard::Key::A;
+	this->supportedKeys["D"] = sf::Keyboard::Key::D;
+	this->supportedKeys["W"] = sf::Keyboard::Key::W;
+	this->supportedKeys["S"] = sf::Keyboard::Key::S;
+
+	for (auto i : this->supportedKeys)
+	{
+		std::cout << i.first << " " << i.second << "\n";
+	}
+
+		//DEBUG PRINT (REMOVE LATER)
 	//std::cout << this->supportedKeys.at("A") << "\n";
 }
 

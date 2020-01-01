@@ -4,14 +4,29 @@
 void GameState::initKeybinds()
 {
 
+	std::ifstream infilestream("config/gamestate_keybinds.ini");
+	if (infilestream.is_open())
+	{
+		std::string key = "";
+		std::string key2 = "";
+
+		while (infilestream >> key >> key2)
+		{
+			this->keybinds[key] = this->supportedKeys->at(key2);
+		}
+	}
+
+		infilestream.close();
 	//WE CREATED FUNCTIONALITY that will used supported key a, d, w, s
 	//which are all supported by our engine. Functionality is only for THIS state
 	//so each state can have its own type of functionality based on each key.
-	this->keybinds.emplace("MOVE_LEFT", this->supportedKeys->at("A"));
-	this->keybinds.emplace("MOVE_RIGHT", this->supportedKeys->at("D"));
-	this->keybinds.emplace("MOVE_UP", this->supportedKeys->at("W"));
-	this->keybinds.emplace("MOVE_DOWN", this->supportedKeys->at("S"));
-
+	/*
+	this->keybinds["CLOSE"] = this->supportedKeys->at("ESCAPE");
+	this->keybinds["MOVE_LEFT"] = this->supportedKeys->at("A");
+	this->keybinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
+	this->keybinds["MOVE_UP"] = this->supportedKeys->at("W");
+	this->keybinds["MOVE_DOWN"] = this->supportedKeys->at("S");
+	*/
 	//Later, we will be able to use files to load these keybinds in.
 }
 
