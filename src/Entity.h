@@ -19,7 +19,7 @@ private:
 protected:
 	//something temporary to move around
 
-	sf::Sprite* sprite;
+	sf::Sprite sprite;
 	sf::Texture* texture; //we don't want to  load a new texture every time we create an entity, that's why we have a pointer
 
 	MovementComponent* movementComponent;
@@ -29,7 +29,7 @@ public:
 		virtual ~Entity();
 
 		//Component functions
-		void createSprite(sf::Texture* texture);
+		void setTexture(sf::Texture& texture);
 		void createMovementComponent(const float maxVelocity);
 
 		//Functions
