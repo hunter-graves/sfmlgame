@@ -11,6 +11,7 @@ private:
 	sf::Event sfEvent;
 	std::vector<sf::VideoMode> videoModes;
 	sf::ContextSettings windowSettings;
+	bool fullscreen;
 	sf::Clock dtClock;
 	//delta time (used a LOT)
 	//keeps track of how long it took to do
@@ -30,6 +31,8 @@ private:
 	//Map
 	std::map<std::string, int> supportedKeys;
 	//Initialization
+	void initVariables();
+
 	void initWindow();
 
 	//add supported keys

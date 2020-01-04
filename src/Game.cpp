@@ -2,6 +2,15 @@
 
 //Static functions
 
+//Initializer for variables
+
+void Game::initVariables()
+{
+	this->window = NULL;
+	this->fullscreen = false;
+
+	this->dt = 0.f;
+}
 //Initializer for window
 void Game::initWindow()
 {
@@ -35,8 +44,9 @@ void Game::initWindow()
 	this->fullscreen = fullscreen;
 	windowSettings.antialiasingLevel = antialising_level;
 	if(fullscreen)
-		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Default, windowSettings);
+		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Fullscreen, windowSettings);
 	else
+		 this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, windowSettings);
 
 	//Set frame rate, turn off vsync
 	this->window->setFramerateLimit(framerate_limit);

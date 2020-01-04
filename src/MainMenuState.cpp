@@ -1,5 +1,6 @@
 #include "MainMenuState.h"
 
+
 void MainMenuState::initButtons()
 {
 	this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50, &this->font, "New Game",
@@ -14,13 +15,11 @@ void MainMenuState::initButtons()
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)
 {
+	this->initVariables();
 	this->initFonts();
 	this->initKeybinds();
 	this->initButtons();
-
-
-	this->background.setSize(sf::Vector2f(window->getSize().x,window->getSize().y));
-	this->background.setFillColor(sf::Color::Magenta);
+	this->initBackground();
 }
 
 
@@ -38,7 +37,25 @@ MainMenuState::~MainMenuState()
 
 
 //fonts
+void MainMenuState::initVariables()
+{
 
+}
+void MainMenuState::initBackground()
+{
+	this->background.setSize(
+		sf::Vector2f(
+		static_cast<float>(this->window->getSize().x),
+		static_cast<float>(this->window->getSize().y)
+		)
+	);
+	if(!this->backgroundTexture.loadFromFile("resources/images/background/background.png"))
+	{
+		throw "ERROR::MAINMENUSTATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
+	}
+	this->background.setTexture(&this->backgroundTexture);
+
+}
 
 void MainMenuState::initFonts()
 {
@@ -140,6 +157,17 @@ void MainMenuState::render(sf::RenderTarget* target)
 
 	target->draw(this->background);
 	this->renderButtons(target);
+
+		//REMOVE LATER!!
+	sf::Text mouseText;
+	mouseText.setPosition(this->mousePosView);
+	mouseText.setFont(this->font);
+	mouseText.setCharacterSize(12);
+	std::stringstream ss;
+	ss << this->mousePosView.x << " " << this->mousePosView.y;
+	mouseText.setString(ss.str());
+
+	target->draw(mouseText);
 
 }
 
