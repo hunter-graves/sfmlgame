@@ -20,7 +20,7 @@ class GameState :
 
 	//Functions (pure virtual functions that were defined in State
 	//must be defined here)
-	void endState();
+
 	void updateInput(const float& dt);
 	void update(const float& dt);
 	//Can use "NULL" or 0 here (below) instead of nullptr..

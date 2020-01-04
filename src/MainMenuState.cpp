@@ -6,8 +6,12 @@ void MainMenuState::initButtons()
 	this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50, &this->font, "New Game",
 	sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
-	this->buttons["EXIT_STATE"] = new Button(100, 300, 150, 50, &this->font, "Quit",
+	this->buttons["SETTINGS"] = new Button(100, 300, 150, 50, &this->font, "Settings",
 	sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+
+	this->buttons["EXIT_STATE"] = new Button(100, 500, 150, 50, &this->font, "Quit",
+	sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+
 }
 
 
@@ -103,7 +107,7 @@ void MainMenuState::updateInput(const float& /*dt*/)
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
 
-	this->checkForQuit();
+
 
 
 
@@ -141,7 +145,7 @@ void MainMenuState::updateButtons()
 	//quit the game
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
-		this->quit = true;
+		this->endState();
 	}
 }
 
@@ -181,11 +185,7 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
 }
 
 //State management
-void MainMenuState::endState()
-{
-	//debug
-	std::cout << "Ending MainMenuState!" << "\n";
-}
+
 
 
 

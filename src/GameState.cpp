@@ -49,7 +49,7 @@ void GameState::updateInput(const float& dt)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
-	this->checkForQuit();
+
 
 //Update player input
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
@@ -67,6 +67,11 @@ void GameState::updateInput(const float& dt)
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player.move(dt, 0.f, 1.f);
+	}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
+	{
+		this->endState();
 	}
 
 }
@@ -98,10 +103,6 @@ void GameState::render(sf::RenderTarget* target)
 }
 
 //State management
-void GameState::endState()
-{
-	std::cout << "Ending GameState!" << "\n";
-}
 
 
 

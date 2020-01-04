@@ -27,6 +27,8 @@ protected:
 	//something temporary to move around
 	sf::RectangleShape shape;
 	float movementSpeed;
+	sf::Sprite sprite;
+	sf::Texture* texture; //we don't want to  load a new texture every time we create an entity, that's why we have a pointer
 
 public:
 		Entity();
