@@ -10,6 +10,7 @@ class State
 	private:
 //We need an array (vector) to keep resources
 protected:
+std::stack<State*>* states; //pointer to a state stack pointer, a way to save each state into the universal state stack from game.h
 sf::RenderWindow* window;
 std::map<std::string, int>* supportedKeys;
 std::map<std::string, int> keybinds;
@@ -32,7 +33,7 @@ virtual void initKeybinds() = 0;
 //used to ensure that the correct function is aclled for an object,
 //regardless of the type of reference or pointer used for the func call
 public:
-	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 	virtual ~State();
 
 	//If you inherit from state you MUST define an update and a render

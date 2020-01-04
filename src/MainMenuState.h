@@ -11,12 +11,16 @@ class MainMenuState :
 	sf::RectangleShape background;
 	sf::Font font;
 
-	Button* gamestate_btn;
+	std::map<std::string, Button*> buttons;
+
 	//Functions
 	void initFonts();
 	void initKeybinds();
+	void initButtons();
+	void updateButtons();
+	void renderButtons(sf::RenderTarget* target = nullptr);
 	public:
-		MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+		MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 		virtual ~MainMenuState();
 
 

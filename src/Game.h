@@ -9,7 +9,8 @@ private:
 	//Variables
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
-
+	std::vector<sf::VideoMode> videoModes;
+	sf::ContextSettings windowSettings;
 	sf::Clock dtClock;
 	//delta time (used a LOT)
 	//keeps track of how long it took to do

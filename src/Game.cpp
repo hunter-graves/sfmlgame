@@ -9,24 +9,35 @@ void Game::initWindow()
 
 	/*Creates a SFML window using options from a window.ini file*/
 	std::ifstream infilestream("config/window.ini");
+	this->videoModes = sf::VideoMode::getFullscreenModes();
 
 	//Default window settings
-	sf::VideoMode window_bounds(800, 600);
+	sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
 	std::string title = "None";
+	bool fullscreen = false;
 	unsigned framerate_limit = 120;
 	bool vertical_sync_enabled = false;
+	unsigned antialising_level = 0;
 
 	//Load window config settings from window ini file
 	if(infilestream.is_open())
 	{
 		std::getline(infilestream, title);
 		infilestream >> window_bounds.width >> window_bounds.height;
+		infilestream >> fullscreen;
 		infilestream >> framerate_limit;
 		infilestream >> vertical_sync_enabled;
+		infilestream >> antialising_level;
 	}
 
 	infilestream.close();
-	this->window = new sf::RenderWindow(window_bounds, title);
+
+	this->fullscreen = fullscreen;
+	windowSettings.antialiasingLevel = antialising_level;
+	if(fullscreen)
+		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Default, windowSettings);
+	else
+
 	//Set frame rate, turn off vsync
 	this->window->setFramerateLimit(framerate_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
@@ -67,7 +78,7 @@ void Game::initKeys()
 void Game::initStates()
 {
 	//we push a game state as we initialize the state
-	this->states.push(new MainMenuState(this->window, &this->supportedKeys));
+	this->states.push(new MainMenuState(this->window, &this->supportedKeys, &this->states));
 	//this->states.push(new GameState(this->window, &this->supportedKeys));
 }
 //Constructors/Destructors
