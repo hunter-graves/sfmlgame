@@ -1,7 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Entity.h"
+#include "Player.h"
 
 //We keep resources in State
 class State
@@ -22,7 +22,7 @@ sf::Vector2i mousePosScreen; //unsigned +/- direc
 sf::Vector2i mousePosWindow; //restricted to window size
 sf::Vector2f mousePosView; //needs to be big
 //Resources
-std::vector<sf::Texture> textures;
+std::map<std::string, sf::Texture> textures;
 
 //Functions
 virtual void initKeybinds() = 0;

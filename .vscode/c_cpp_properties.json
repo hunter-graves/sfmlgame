@@ -30,6 +30,7 @@
 			],
 			"includePath": [
 				"${workspaceFolder}/src",
+				"${workspaceFolder}/components",
 				"${workspaceFolder}/lib",
 				"${workspaceFolder}/test",
 				"/usr/local/include/**"
