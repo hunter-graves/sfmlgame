@@ -74,7 +74,8 @@ void GameState::updateInput(const float& dt)
 //Updates
 void GameState::update(const float& dt)
 {
-	std::cout << "Hello from GameState!" << "\n";
+	//std::cout << "Hello from GameState!" << "\n";
+	this->updateMousePositions();
 	this->updateInput(dt);
 
 	this->player.update(dt);

@@ -15,6 +15,11 @@ std::map<std::string, int>* supportedKeys;
 std::map<std::string, int> keybinds;
 bool quit;
 
+
+//Track mouse position
+sf::Vector2i mousePosScreen; //unsigned +/- direc
+sf::Vector2i mousePosWindow; //restricted to window size
+sf::Vector2f mousePosView; //needs to be big
 //Resources
 std::vector<sf::Texture> textures;
 
@@ -40,6 +45,7 @@ public:
 	virtual void update(const float& dt) = 0; //we dont want to save all these things here we do it in the game engine itself
 	//render keeps the context
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
+	virtual void updateMousePositions();
 
 };
 

@@ -4,9 +4,11 @@
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
 	: State(window, supportedKeys)
 {
+	this->initFonts();
 	this->initKeybinds();
+	this->gamestate_btn = new Button(100, 100, 150, 50, &this->font, "New Game",
+	sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 	this->background.setSize(sf::Vector2f(window->getSize().x,window->getSize().y));
-
 	this->background.setFillColor(sf::Color::Magenta);
 }
 
@@ -16,11 +18,21 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 //Destructor
 MainMenuState::~MainMenuState()
 {
-
+	delete this->gamestate_btn;
 }
 
 #include "GameState.h"
 
+
+//fonts
+
+void MainMenuState::initFonts()
+{
+	if(!this->font.loadFromFile("fonts/good-times-rg.ttf"))
+	{
+		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
+	}
+}
 //init keybinds
 void MainMenuState::initKeybinds()
 {
@@ -59,6 +71,7 @@ void MainMenuState::updateInput(const float& /*dt*/)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
+
 	this->checkForQuit();
 
 
@@ -68,7 +81,11 @@ void MainMenuState::updateInput(const float& /*dt*/)
 //Updates
 void MainMenuState::update(const float& dt)
 {
+	this->updateMousePositions();
 	this->updateInput(dt);
+	this->gamestate_btn->update(this->mousePosView);
+	//std::cout << this->mousePosView.x << " " << this->mousePosView.y << "\n";
+	//printf( "\033[2J" );
 }
 
 
@@ -83,6 +100,8 @@ void MainMenuState::render(sf::RenderTarget* target)
 	}
 
 	target->draw(this->background);
+
+	this->gamestate_btn->render(target);
 
 
 
