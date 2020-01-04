@@ -67,7 +67,7 @@ void Game::initKeys()
 void Game::initStates()
 {
 	//we push a game state as we initialize the state
-	this->states.push(new GameState(this->window, &this->supportedKeys));
+	this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 //Constructors/Destructors
 
