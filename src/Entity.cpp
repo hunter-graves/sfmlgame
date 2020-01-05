@@ -17,6 +17,14 @@ Entity::Entity()
 Entity::~Entity()
 {
 	delete this->movementComponent;//we delete sprite cuz it's inside, whereas texture is outside
+	delete this->animationComponent;
+}
+
+void Entity::setTexture(sf::Texture& texture)
+{
+
+ this->sprite.setTexture(texture);
+ //this->sprite->setTexture(*this->texture);
 }
 
 //Component functions
@@ -24,11 +32,11 @@ void Entity::createMovementComponent(const float maxVelocity, const float accele
 {
 	this->movementComponent = new MovementComponent(this->sprite, maxVelocity, acceleration, deceleration);
 }
-void Entity::setTexture(sf::Texture& texture)
-{
 
- this->sprite.setTexture(texture);
- //this->sprite->setTexture(*this->texture);
+
+void Entity::createAnimationComponent(sf::Texture & texture_sheet)
+{
+	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
 }
 
 void Entity::setPosition(const float x, const float y)

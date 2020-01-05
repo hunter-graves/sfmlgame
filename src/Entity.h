@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include "components/MovementComponent.h"
+#include "components/AnimationComponent.h"
 
 //Entity is our base for any type of character that we will have.
 class Entity
@@ -20,9 +21,10 @@ protected:
 	//something temporary to move around
 
 	sf::Sprite sprite;
-	sf::Texture* texture; //we don't want to  load a new texture every time we create an entity, that's why we have a pointer
+	//sf::Texture* texture; //we don't want to  load a new texture every time we create an entity, that's why we have a pointer
 
 	MovementComponent* movementComponent;
+	AnimationComponent* animationComponent;
 
 public:
 		Entity();
@@ -31,6 +33,7 @@ public:
 		//Component functions
 		void setTexture(sf::Texture& texture);
 		void createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration);
+		void createAnimationComponent(sf::Texture& texture_sheet);
 
 		//Functions
 		virtual void setPosition(const float x, const float y);
