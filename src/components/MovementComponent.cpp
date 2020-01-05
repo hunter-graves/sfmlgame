@@ -1,3 +1,4 @@
+
 #include "MovementComponent.h"
 
 MovementComponent::MovementComponent(sf::Sprite& sprite,
@@ -29,6 +30,58 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
 	this->velocity.y +=  this->acceleration * dir_y;
 
 
+}
+
+const bool MovementComponent::idle() const
+{
+	if(this->velocity.x == 0.f && this->velocity.y == 0.f)
+	{
+		return true;
+	}
+		else
+		return false;//return true;
+
+	//return false;
+}
+
+const bool MovementComponent::forward() const
+{
+	if(this->velocity.x > 0.f)
+	{
+		return true;
+	}
+		else
+		return false;
+}
+
+const bool MovementComponent::backward() const
+{
+	if(this->velocity.x < 0.f)
+	{
+		return true;
+	}
+		else
+		return false;
+}
+
+const bool MovementComponent::up() const
+{
+	if(this->velocity.y > 0.f)
+	{
+		return true;
+	}
+		else
+		return false;
+}
+
+const bool MovementComponent::down() const
+{
+	if(this->velocity.y < 0.f)
+	{
+		return true;
+	}
+		else
+		return false;
 }
 
 void MovementComponent::update(const float & dt)

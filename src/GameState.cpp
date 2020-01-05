@@ -40,6 +40,26 @@ void GameState::initTextures()
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
+
+		if (!this->textures["PLAYER_WALK_FORWARD"].loadFromFile("resources/images/player/walk-forward.png"))
+	{
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
+	}
+
+		if (!this->textures["PLAYER_WALK_BACKWARD"].loadFromFile("resources/images/player/walk-backward.png"))
+	{
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
+	}
+
+		if (!this->textures["PLAYER_WALK_DOWN"].loadFromFile("resources/images/player/walk-down.png"))
+	{
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
+	}
+
+		if (!this->textures["PLAYER_WALK_UP"].loadFromFile("resources/images/player/walk-up.png"))
+	{
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
+	}
 }
 
 void GameState::initPlayers()
@@ -68,30 +88,42 @@ void GameState::updateInput(const float& dt)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
-
+	this->player->setTexture(this->textures["PLAYER_SHEET"]);
 
 //Update player input
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
-	{
-		this->player->move(-1.f, 0.f, dt);
-	}
+
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
 	{
 		this->player->move(1.f, 0.f, dt);
+		this->player->setTexture(this->textures["PLAYER_WALK_FORWARD"]);
+	}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
+	{
+		this->player->move(-1.f, 0.f, dt);
+		//this->player->textures["WALK_SHEET"];
+		this->player->setTexture(this->textures["PLAYER_WALK_BACKWARD"]);
+	}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
+	{
+		this->player->move(0.f, 1.f, dt);
+		this->player->setTexture(this->textures["PLAYER_WALK_DOWN"]);
 	}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
 	{
 		this->player->move(0.f, -1.f,dt);
+		this->player->setTexture(this->textures["PLAYER_WALK_UP"]);
 	}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-	{
-		this->player->move(0.f, 1.f, dt);
-	}
+
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
 	{
 		this->endState();
 	}
+
+
+
+
+
 
 }
 

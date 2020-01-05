@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignored "-Wignored-qualifiers"
 #ifndef MOVEMMENTCOMPONENT_H
 #define MOVEMENTCOMPONENT_H
 #include <vector>
@@ -30,6 +31,11 @@ public:
 	const sf::Vector2f& getVelocity() const;
 
 	//Functions
+	const bool idle() const;
+	const bool forward() const;
+	const bool backward() const;
+	const bool up() const;
+	const bool down() const;
 	void update(const float& dt);
 	void move(const float x, const float y, const float& dt);
 
