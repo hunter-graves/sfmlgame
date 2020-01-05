@@ -5,8 +5,6 @@
 void Entity::initVariables()
 {
 	this->movementComponent = NULL;
-	this->texture = NULL;
-
 }
 //Constructor
 Entity::Entity()
@@ -18,13 +16,13 @@ Entity::Entity()
 //Destructor
 Entity::~Entity()
 {
-	//we delete sprite cuz it's inside, whereas texture is outside
+	delete this->movementComponent;//we delete sprite cuz it's inside, whereas texture is outside
 }
 
 //Component functions
-void Entity::createMovementComponent(const float maxVelocity)
+void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
 {
-	this->movementComponent = new MovementComponent(this->sprite, maxVelocity);
+	this->movementComponent = new MovementComponent(this->sprite, maxVelocity, acceleration, deceleration);
 }
 void Entity::setTexture(sf::Texture& texture)
 {
@@ -41,7 +39,7 @@ void Entity::setPosition(const float x, const float y)
 
 
 //Move
-void Entity::move(const float& dt, const float dir_x, const float dir_y)
+void Entity::move(const float dir_x, const float dir_y, const float& dt)
 {
 	if(this->movementComponent)
 	{
@@ -51,9 +49,10 @@ void Entity::move(const float& dt, const float dir_x, const float dir_y)
 }
 
 //Update
-void Entity::update(const float & /*dt*/)
+void Entity::update(const float & dt)
 {
-
+	if(this->movementComponent)
+		this->movementComponent->update(dt);
 }
 
 //Render
