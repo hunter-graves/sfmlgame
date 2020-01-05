@@ -36,15 +36,15 @@ void GameState::initTextures()
 	sf::Texture temp;
 	//temp.loadFromFile("resources/images/player/adventurer-idle-2-01.png");
 	//temp.loadFromFile("resources/images/player/A_right0000.png");
-	if (!this->textures["PLAYER_IDLE"].loadFromFile("resources/images/player/A_right0000.png"))
+	if (!this->textures["PLAYER_SHEET"].loadFromFile("resources/images/player/idle-animation.png"))
 	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_IDLE_TEXTURE";
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
 }
 
 void GameState::initPlayers()
 {
-	this->player = new Player(0,0, this->textures["PLAYER_IDLE"]);
+	this->player = new Player(0,0, this->textures["PLAYER_SHEET"]);
 }
 
 //Constructor
