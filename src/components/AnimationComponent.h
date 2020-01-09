@@ -9,6 +9,21 @@
 class AnimationComponent
 {
 private:
+	std::map<int, std::string> currentTexture = {
+		{0, "IDLE_RIGHT"},
+		{1, "WALK_UP"},
+		{2, "WALK_UR"},
+		{3,"WALK_UL"},
+		{4,"WALK_DOWN"},
+		{5,"WALK_DR"},
+		{6,"WALK_DL"},
+		{7,"WALK_LEFT"},
+		{8,"WALK_RIGHT"},
+		{9,"IDLE_LEFT"},
+		{10,"IDLE_UR"},
+		{11,"IDLE_UL"}
+
+	};
 	class Animation
 	{
 	public:
@@ -22,6 +37,7 @@ private:
 		sf::IntRect startRect;
 		sf::IntRect currentRect;
 		sf::IntRect endRect;
+
 
 		Animation(sf::Sprite& sprite, sf::Texture& texture_sheet,
 				float animation_timer,
@@ -71,7 +87,7 @@ private:
 	sf::Sprite& sprite;
 	sf::Texture& textureSheet;
 	std::map<std::string, Animation*> animations; //we will add a bunch of animations to this
-
+	std::map<int, std::string> checkTextureMap;
 public:
 	AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet);
 	virtual ~AnimationComponent();
@@ -87,6 +103,8 @@ public:
 	);
 
 	void play(const std::string key, const float& dt);
+	void reset(const std::string key);
+	void checkTexture(int prev);
 
 };
 #endif

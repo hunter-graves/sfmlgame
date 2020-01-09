@@ -27,6 +27,7 @@ void AnimationComponent::addAnimation
 
 		this->animations[key] = new Animation
 		(
+
 			this->sprite, this->textureSheet, animation_timer,
 			start_frame_x, start_frame_y,
 			frames_x, frames_y,
@@ -38,4 +39,13 @@ void AnimationComponent::addAnimation
 void AnimationComponent::play(const std::string key, const float& dt)
 {
 	this->animations[key]->play(dt);
+}
+
+void AnimationComponent::checkTexture(int prev)
+{
+	reset(this->currentTexture.at(prev));
+}
+void AnimationComponent::reset(const std::string key)
+{
+	this->animations[key]->reset();
 }

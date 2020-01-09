@@ -34,37 +34,20 @@ void GameState::initKeybinds()
 void GameState::initTextures()
 {
 	sf::Texture temp;
-	//temp.loadFromFile("resources/images/player/adventurer-idle-2-01.png");
-	//temp.loadFromFile("resources/images/player/A_right0000.png");
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("resources/images/player/idle-animation.png"))
+
+	if (!this->textures["PLAYER_IDLE_RIGHT"].loadFromFile("resources/images/player/idle-right-animation.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
 
-		if (!this->textures["PLAYER_WALK_FORWARD"].loadFromFile("resources/images/player/walk-forward.png"))
-	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
-	}
-
-		if (!this->textures["PLAYER_WALK_BACKWARD"].loadFromFile("resources/images/player/walk-backward.png"))
-	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
-	}
-
-		if (!this->textures["PLAYER_WALK_DOWN"].loadFromFile("resources/images/player/walk-down.png"))
-	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
-	}
-
-		if (!this->textures["PLAYER_WALK_UP"].loadFromFile("resources/images/player/walk-up.png"))
-	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
-	}
 }
 
 void GameState::initPlayers()
 {
-	this->player = new Player(0,0, this->textures["PLAYER_SHEET"]);
+	this->player = new Player(0,0, this->textures["PLAYER_IDLE_RIGHT"]);
+	//this->player->playerTextures[""]/
+	//this->player->setCoordinates(sf::Vector2f(0,0));
+	//this->player->setPreviousXPosition(0.f);
 }
 
 //Constructor
@@ -88,30 +71,30 @@ void GameState::updateInput(const float& dt)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
-	this->player->setTexture(this->textures["PLAYER_SHEET"]);
-
-//Update player input
+	this->player->setTexture(this->textures["PLAYER_IDLE_RIGHT"]);
+	//Update player input
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
 	{
 		this->player->move(1.f, 0.f, dt);
-		this->player->setTexture(this->textures["PLAYER_WALK_FORWARD"]);
+		//this->player->setTexture(this->textures["PLAYER_WALK_FORWARD"]);
+
 	}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
 	{
 		this->player->move(-1.f, 0.f, dt);
-		//this->player->textures["WALK_SHEET"];
-		this->player->setTexture(this->textures["PLAYER_WALK_BACKWARD"]);
+		//this->player->setTexture(this->textures["PLAYER_WALK_BACKWARD"]);
+
 	}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
-		this->player->setTexture(this->textures["PLAYER_WALK_DOWN"]);
+		//this->player->setTexture(this->textures["PLAYER_WALK_DOWN"]);
 	}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
 	{
 		this->player->move(0.f, -1.f,dt);
-		this->player->setTexture(this->textures["PLAYER_WALK_UP"]);
+		//this->player->setTexture(this->textures["PLAYER_WALK_UP"]);
 	}
 
 
@@ -119,6 +102,7 @@ void GameState::updateInput(const float& dt)
 	{
 		this->endState();
 	}
+
 
 
 
@@ -133,7 +117,6 @@ void GameState::update(const float& dt)
 	//std::cout << "Hello from GameState!" << "\n";
 	this->updateMousePositions();
 	this->updateInput(dt);
-
 	this->player->update(dt);
 }
 

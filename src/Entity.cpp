@@ -27,6 +27,8 @@ void Entity::setTexture(sf::Texture& texture)
  //this->sprite->setTexture(*this->texture);
 }
 
+
+
 //Component functions
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
 {
@@ -51,10 +53,40 @@ void Entity::move(const float dir_x, const float dir_y, const float& dt)
 {
 	if(this->movementComponent)
 	{
-		this->movementComponent->move(dir_x, dir_y, dt); //sets velocity
 
+		this->movementComponent->move(dir_x, dir_y, dt); //sets velocity
 	}
 }
+
+void Entity::setPrev(int prev)
+{
+	this->previous = prev;
+}
+int Entity::getPrev()
+{
+	return this->previous;
+}
+
+/*
+void Entity::setPreviousXPosition(float previousXPosition)
+{
+	this->previousXPosition = previousXPosition;
+}
+
+float Entity::getPreviousXPosition()
+{
+	return this->previousXPosition;
+}
+void Entity::setCoordinates(sf::Vector2f coordinates)
+{
+	this->coordinates.x = coordinates.x;
+	this->coordinates.y = coordinates.y;
+}
+sf::Vector2f Entity::getCoordinates()
+{
+	return this->coordinates;
+}
+*/
 
 //Update
 void Entity::update(const float & dt)

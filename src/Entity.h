@@ -11,6 +11,9 @@ class Entity
 
 private:
 	void initVariables();
+	int previous;
+
+	//float previousXPosition;
 	//protected is basically a step between private and public
 	//anything under protected may be accessed in the child class
 	//I can access them directly, don't need getters or setters
@@ -26,6 +29,9 @@ protected:
 	MovementComponent* movementComponent;
 	AnimationComponent* animationComponent;
 
+
+	//sf::Vector2f coordinates;
+
 public:
 		Entity();
 		virtual ~Entity();
@@ -36,10 +42,16 @@ public:
 		void createAnimationComponent(sf::Texture& texture_sheet);
 
 		//Functions
+		//void setPreviousXPosition(float previousXPosition);
+		//float getPreviousXPosition();
+		//void setCoordinates(sf::Vector2f coordinates);
+		//sf::Vector2f getCoordinates();
 		virtual void setPosition(const float x, const float y);
 		virtual void move(const float dir_x, const float dir_y, const float& dt);
 		virtual void update(const float& dt);
 		virtual void render(sf::RenderTarget* target);
+		void setPrev(int prev);
+		int getPrev();
 };
 
 #endif

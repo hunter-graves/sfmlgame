@@ -23,6 +23,7 @@ sf::Vector2i mousePosWindow; //restricted to window size
 sf::Vector2f mousePosView; //needs to be big
 //Resources
 std::map<std::string, sf::Texture> textures;
+//std::map<std::string, sf::Texture>* allTextures;
 
 //Functions
 virtual void initKeybinds() = 0;

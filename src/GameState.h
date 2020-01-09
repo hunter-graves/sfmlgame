@@ -16,10 +16,6 @@ class GameState :
 		virtual ~GameState();
 
 
-
-
-
-
 	//Functions (pure virtual functions that were defined in State
 	//must be defined here)
 
