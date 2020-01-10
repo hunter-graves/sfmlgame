@@ -71,7 +71,7 @@ void GameState::updateInput(const float& dt)
 {
 	//we chekc if we are pressing keys here but we always check if quit has been
 	//pressed
-	this->player->setTexture(this->textures["PLAYER_IDLE_RIGHT"]);
+	//this->player->setTexture(this->textures["PLAYER_IDLE_RIGHT"]);
 	//Update player input
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))

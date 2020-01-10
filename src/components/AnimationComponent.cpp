@@ -1,7 +1,7 @@
 #include "AnimationComponent.h"
 
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet)
-	: sprite(sprite), textureSheet(texture_sheet)
+	: sprite(sprite), textureSheet(texture_sheet), previousAnimation(NULL)
 {
 
 }
@@ -38,6 +38,19 @@ void AnimationComponent::addAnimation
 
 void AnimationComponent::play(const std::string key, const float& dt)
 {
+	if(this->previousAnimation != this->animations[key])
+	{
+		if(this->previousAnimation == NULL)
+			this->previousAnimation = this->animations[key];
+		else
+		{
+
+				this->previousAnimation->reset();
+				this->previousAnimation = this->animations[key];
+
+		}
+
+	}
 	this->animations[key]->play(dt);
 }
 

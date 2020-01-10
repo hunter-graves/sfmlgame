@@ -24,6 +24,7 @@ private:
 		{11,"IDLE_UL"}
 
 	};
+
 	class Animation
 	{
 	public:
@@ -37,6 +38,7 @@ private:
 		sf::IntRect startRect;
 		sf::IntRect currentRect;
 		sf::IntRect endRect;
+
 
 
 		Animation(sf::Sprite& sprite, sf::Texture& texture_sheet,
@@ -56,7 +58,7 @@ private:
 		void play(const float& dt)
 		{
 			/*update timer*/
-			this->timer += 100.f * dt; //up and up and up and up
+			this->timer += 50.f * dt; //up and up and up and up
 				if (this->timer >= this->animationTimer)
 				{
 					//reset timer
@@ -87,6 +89,7 @@ private:
 	sf::Sprite& sprite;
 	sf::Texture& textureSheet;
 	std::map<std::string, Animation*> animations; //we will add a bunch of animations to this
+	Animation* previousAnimation;
 	std::map<int, std::string> checkTextureMap;
 public:
 	AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet);

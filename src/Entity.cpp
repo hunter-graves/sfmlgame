@@ -5,6 +5,7 @@
 void Entity::initVariables()
 {
 	this->movementComponent = NULL;
+	this->previous = 0;
 }
 //Constructor
 Entity::Entity()

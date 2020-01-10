@@ -11,7 +11,7 @@ void Player::initVariables()
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
 	}
 
-			if (!this->playerTextures["PLAYER_IDLE_BR"].loadFromFile("resources/images/player/idle-down-right.png")) //idle down right
+			if (!this->playerTextures["PLAYER_IDLE_DR"].loadFromFile("resources/images/player/idle-down-right.png")) //idle down right
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_WALK_TEXTURE";
 	}
@@ -103,10 +103,10 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	this->animationComponent->addAnimation("IDLE_RIGHT", 5.f, 0, 0, 13, 0, 410, 410);
 	this->animationComponent->addAnimation("IDLE_LEFT", 5.f, 0, 0, 13, 0, 410, 410);
 	//diagonal idle
-	this->animationComponent->addAnimation("IDLE_UL", 2.f, 0, 0, 14, 0, 410, 410);
-	this->animationComponent->addAnimation("IDLE_DL", 2.f, 0, 0, 16, 0, 410, 410);
-	this->animationComponent->addAnimation("IDLE_UR", 2.f, 0, 0, 15, 0, 410, 410);
-	this->animationComponent->addAnimation("IDLE_DR", 2.f, 0, 0, 12, 0, 410, 410);
+	this->animationComponent->addAnimation("IDLE_UL", 5.f, 0, 0, 14, 0, 410, 410);
+	this->animationComponent->addAnimation("IDLE_DL", 5.f, 0, 0, 16, 0, 410, 410);
+	this->animationComponent->addAnimation("IDLE_UR", 5.f, 0, 0, 15, 0, 410, 410);
+	this->animationComponent->addAnimation("IDLE_DR", 5.f, 0, 0, 12, 0, 410, 410);
 
 
 }
@@ -124,9 +124,32 @@ void Player::update(const float& dt)
 	this->movementComponent->update(dt);
 	if(this->movementComponent->idle())
 	{
+		if(this->getPrev() == 2)
+		{
+				this->setTexture(this->playerTextures["PLAYER_IDLE_UR"]);
+				this->animationComponent->play("IDLE_UR", dt);
+		}
+			else if(this->getPrev() == 3)
+		{
+				this->setTexture(this->playerTextures["PLAYER_IDLE_UL"]);
+				this->animationComponent->play("IDLE_UL", dt);
+		}
+				else if(this->getPrev() == 5)
+		{
+				this->setTexture(this->playerTextures["PLAYER_IDLE_DR"]);
+				this->animationComponent->play("IDLE_DR", dt);
+		}
+						else if(this->getPrev() == 6)
+		{
+				this->setTexture(this->playerTextures["PLAYER_IDLE_DL"]);
+				this->animationComponent->play("IDLE_DL", dt);
+		}
+		else
+		{
+			this->setTexture(this->playerTextures["PLAYER_IDLE_RIGHT"]);
+			this->animationComponent->play("IDLE_RIGHT", dt);
+		}
 
-		this->setTexture(this->playerTextures["PLAYER_IDLE_RIGHT"]);
-		this->animationComponent->play("IDLE_RIGHT", dt);
 	}
 
 		else if(this->movementComponent->up())
@@ -137,24 +160,24 @@ void Player::update(const float& dt)
 				this->setPrev(2);
 				this->setTexture(this->playerTextures["PLAYER_WALK_UR"]);
 				this->animationComponent->play("WALK_UR", dt);
-				if(this->getPrev() != 2)
-				this->animationComponent->checkTexture(this->getPrev());
+				//if(this->getPrev() != 2)
+				//this->animationComponent->checkTexture(this->getPrev());
 			}
 			else if(this->movementComponent->backward())
 			{
 				this->setPrev(3);
 				this->setTexture(this->playerTextures["PLAYER_WALK_UL"]);
 				this->animationComponent->play("WALK_UL", dt);
-				if(this->getPrev() != 3)
-					this->animationComponent->checkTexture(this->getPrev());
+			//	if(this->getPrev() != 3)
+				//	this->animationComponent->checkTexture(this->getPrev());
 			}
 			else
 			{
 				this->setPrev(1);
 				this->setTexture(this->playerTextures["PLAYER_WALK_UP"]);
 				this->animationComponent->play("WALK_UP", dt);
-				if(this->getPrev() != 1)
-					this->animationComponent->checkTexture(this->getPrev());
+				//if(this->getPrev() != 1)
+				//	this->animationComponent->checkTexture(this->getPrev());
 
 			}
 
@@ -168,24 +191,24 @@ void Player::update(const float& dt)
 				this->setPrev(5);
 				this->setTexture(this->playerTextures["PLAYER_WALK_DR"]);
 				this->animationComponent->play("WALK_DR", dt);
-				if(this->getPrev() != 5)
-					this->animationComponent->checkTexture(this->getPrev());
+			//	if(this->getPrev() != 5)
+					//this->animationComponent->checkTexture(this->getPrev());
 			}
 			else if(this->movementComponent->backward())
 			{
 				this->setPrev(6);
 				this->setTexture(this->playerTextures["PLAYER_WALK_DL"]);
 				this->animationComponent->play("WALK_DL", dt);
-				if(this->getPrev() != 6)
-					this->animationComponent->checkTexture(this->getPrev());
+				//if(this->getPrev() != 6)
+				//	this->animationComponent->checkTexture(this->getPrev());
 			}
 			else
 			{
 				this->setPrev(4);
 				this->setTexture(this->playerTextures["PLAYER_WALK_DOWN"]);
 				this->animationComponent->play("WALK_DOWN", dt);
-				if(this->getPrev() != 4)
-					this->animationComponent->checkTexture(this->getPrev());
+				//if(this->getPrev() != 4)
+				//	this->animationComponent->checkTexture(this->getPrev());
 			}
 
 		}
@@ -195,8 +218,8 @@ void Player::update(const float& dt)
 			this->setPrev(7);
 			this->setTexture(this->playerTextures["PLAYER_WALK_BACKWARD"]);
 			this->animationComponent->play("WALK_BACKWARD", dt);
-			if(this->getPrev() != 7)
-				this->animationComponent->checkTexture(this->getPrev());
+			//if(this->getPrev() != 7)
+				//this->animationComponent->checkTexture(this->getPrev());
 		}
 
 		else if(this->movementComponent->forward())
@@ -204,8 +227,8 @@ void Player::update(const float& dt)
 			this->setPrev(8);
 			this->setTexture(this->playerTextures["PLAYER_WALK_FORWARD"]);
 			this->animationComponent->play("WALK_FORWARD", dt);
-			if(this->getPrev() != 8)
-				this->animationComponent->checkTexture(this->getPrev());
+		//	if(this->getPrev() != 8)
+			//	this->animationComponent->checkTexture(this->getPrev());
 		}
 
 
