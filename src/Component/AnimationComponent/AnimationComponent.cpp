@@ -44,10 +44,8 @@ void AnimationComponent::play(const std::string key, const float& dt)
 			this->previousAnimation = this->animations[key];
 		else
 		{
-
 				this->previousAnimation->reset();
 				this->previousAnimation = this->animations[key];
-
 		}
 
 	}
